@@ -44,8 +44,8 @@ dependencies {
     implementation project(':services:news:shatteredNews')
 
     implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
-    implementation "com.mobidevelop.robovm:robovm-rt:$robovmVersion"
-    implementation "com.mobidevelop.robovm:robovm-cocoatouch:$robovmVersion"
+    implementation "com.mobidevelop.robovm:robovm-rt:2.3.21"
+    implementation "com.mobidevelop.robovm:robovm-cocoatouch:2.3.21"
     implementation "com.badlogicgames.gdx:gdx-backend-robovm:$gdxVersion"
     implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-ios"
     implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-ios"
