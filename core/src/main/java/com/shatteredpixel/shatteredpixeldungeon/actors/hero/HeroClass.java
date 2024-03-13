@@ -59,6 +59,11 @@ import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfInvisibili
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfMindVision;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfStrength;
+import com.shatteredpixel.shatteredpixeldungeon.items.rings.Ring;
+import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfAccuracy;
+import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfArcana;
+import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfEnergy;
+import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfEvasion;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfWealth;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfIdentify;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfLullaby;
@@ -162,11 +167,23 @@ public enum HeroClass {
 	}
 
 	private static void initWarrior( Hero hero ) {
+		HornOfPlenty horn = new HornOfPlenty();
+		ScrollHolder scrollHolder = new ScrollHolder();
+		PotionBandolier potionBandolier = new PotionBandolier();
+		MagicalHolster magicalHolster = new MagicalHolster();
+		RingOfArcana ringOfArcana= new RingOfArcana();
 		(hero.belongings.weapon = new WornShortsword()).identify();
 		ThrowingStone stones = new ThrowingStone();
 		stones.quantity(3).collect();
 		Dungeon.quickslot.setSlot(0, stones);
 
+		horn.identify();
+		horn.collect();
+		scrollHolder.collect();
+		potionBandolier.collect();
+		magicalHolster.collect();
+		ringOfArcana.level(3);
+		ringOfArcana.identify().collect();
 		if (hero.belongings.armor != null){
 			hero.belongings.armor.affixSeal(new BrokenSeal());
 		}
@@ -176,12 +193,24 @@ public enum HeroClass {
 	}
 
 	private static void initMage( Hero hero ) {
+		HornOfPlenty horn = new HornOfPlenty();
+		ScrollHolder scrollHolder = new ScrollHolder();
+		PotionBandolier potionBandolier = new PotionBandolier();
+		MagicalHolster magicalHolster = new MagicalHolster();
 		MagesStaff staff;
 
 		staff = new MagesStaff(new WandOfMagicMissile());
 
 		(hero.belongings.weapon = staff).identify();
 		hero.belongings.weapon.activate(hero);
+		RingOfEnergy energy = new RingOfEnergy();
+		energy.level(3);
+		energy.identify().collect();
+		horn.identify();
+		horn.collect();
+		scrollHolder.collect();
+		potionBandolier.collect();
+		magicalHolster.collect();
 
 		Dungeon.quickslot.setSlot(0, staff);
 
@@ -221,10 +250,23 @@ public enum HeroClass {
 
 	private static void initHuntress( Hero hero ) {
 
+		HornOfPlenty horn = new HornOfPlenty();
+		ScrollHolder scrollHolder = new ScrollHolder();
+		PotionBandolier potionBandolier = new PotionBandolier();
+		MagicalHolster magicalHolster = new MagicalHolster();
 		(hero.belongings.weapon = new Gloves()).identify();
 		SpiritBow bow = new SpiritBow();
 		bow.identify().collect();
+		RingOfAccuracy ringOfAccuracy = new RingOfAccuracy();
+		ringOfAccuracy.level(3);
+		ringOfAccuracy.identify();
+		ringOfAccuracy.collect();
 
+		horn.identify();
+		horn.collect();
+		scrollHolder.collect();
+		potionBandolier.collect();
+		magicalHolster.collect();
 		Dungeon.quickslot.setSlot(0, bow);
 
 		new PotionOfMindVision().identify();
@@ -232,17 +274,33 @@ public enum HeroClass {
 	}
 
 	private static void initDuelist( Hero hero ) {
+		HornOfPlenty horn = new HornOfPlenty();
+		ScrollHolder scrollHolder = new ScrollHolder();
+		PotionBandolier potionBandolier = new PotionBandolier();
+		MagicalHolster magicalHolster = new MagicalHolster();
+		RingOfEvasion ringOfEvasion = new RingOfEvasion();
 
 		(hero.belongings.weapon = new Rapier()).identify();
 		hero.belongings.weapon.activate(hero);
 
 		ThrowingSpike spikes = new ThrowingSpike();
+		horn.identify();
+		horn.collect();
+		scrollHolder.collect();
+		potionBandolier.collect();
+		magicalHolster.collect();
 		spikes.quantity(2).collect();
+		ringOfEvasion.level(3);
+		ringOfEvasion.identify();
+		ringOfEvasion.collect();
 
 		Dungeon.quickslot.setSlot(0, hero.belongings.weapon);
 		Dungeon.quickslot.setSlot(1, spikes);
 
-		new PotionOfStrength().identify();
+		PotionOfStrength potionOfStrength = new PotionOfStrength();
+		potionOfStrength.identify();
+		potionOfStrength.quantity(10);
+		potionOfStrength.collect();
 		new ScrollOfMirrorImage().identify();
 	}
 
