@@ -64,15 +64,19 @@ import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfAccuracy;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfArcana;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfEnergy;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfEvasion;
+import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfForce;
+import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfFuror;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfWealth;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfIdentify;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfLullaby;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfMagicMapping;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfMirrorImage;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfRage;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfRemoveCurse;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfMagicMissile;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.SpiritBow;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Vampiric;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Dagger;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Gloves;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.MagesStaff;
@@ -116,6 +120,9 @@ public enum HeroClass {
 		waterskin.collect();
 
 		new ScrollOfIdentify().identify();
+		ScrollOfIdentify scrollOfIdentify = new ScrollOfIdentify();
+		scrollOfIdentify.quantity(10);
+		scrollOfIdentify.collect();
 
 		switch (this) {
 			case WARRIOR:
@@ -171,22 +178,45 @@ public enum HeroClass {
 		ScrollHolder scrollHolder = new ScrollHolder();
 		PotionBandolier potionBandolier = new PotionBandolier();
 		MagicalHolster magicalHolster = new MagicalHolster();
-		RingOfArcana ringOfArcana= new RingOfArcana();
+		RingOfFuror ringOfFuror = new RingOfFuror();
 		(hero.belongings.weapon = new WornShortsword()).identify();
 		ThrowingStone stones = new ThrowingStone();
 		stones.quantity(3).collect();
 		Dungeon.quickslot.setSlot(0, stones);
+		Gloves gloves = new Gloves();
+		gloves.enchant(new Vampiric());
+		gloves.level(5);
+		gloves.identify().collect();
 
 		horn.identify();
 		horn.collect();
 		scrollHolder.collect();
 		potionBandolier.collect();
 		magicalHolster.collect();
-		ringOfArcana.level(3);
-		ringOfArcana.identify().collect();
+		ringOfFuror.level(4);
+		ringOfFuror.identify().collect();
 		if (hero.belongings.armor != null){
 			hero.belongings.armor.affixSeal(new BrokenSeal());
 		}
+
+		PotionOfHealing potionOfHealing = new PotionOfHealing();
+		potionOfHealing.identify();
+		potionOfHealing.quantity(10);
+		potionOfHealing.collect();
+
+		PotionOfStrength potionOfStrength = new PotionOfStrength();
+		potionOfStrength.identify();
+		potionOfStrength.quantity(10);
+		potionOfStrength.collect();
+		ScrollOfRemoveCurse scrollOfRemoveCurse = new ScrollOfRemoveCurse();
+		scrollOfRemoveCurse.identify();
+		scrollOfRemoveCurse.quantity(10);
+		scrollOfRemoveCurse.collect();
+
+		ScrollOfUpgrade scrollOfUpgrade = new ScrollOfUpgrade();
+		scrollOfUpgrade.identify();
+		scrollOfUpgrade.quantity(10);
+		scrollOfUpgrade.collect();
 
 		new PotionOfHealing().identify();
 		new ScrollOfRage().identify();
@@ -213,6 +243,22 @@ public enum HeroClass {
 		magicalHolster.collect();
 
 		Dungeon.quickslot.setSlot(0, staff);
+		PotionOfStrength potionOfStrength = new PotionOfStrength();
+		potionOfStrength.identify();
+		potionOfStrength.quantity(10);
+		potionOfStrength.collect();
+		PotionOfHealing potionOfHealing = new PotionOfHealing();
+		potionOfHealing.identify();
+		potionOfHealing.quantity(10);
+		potionOfHealing.collect();
+		ScrollOfRemoveCurse scrollOfRemoveCurse = new ScrollOfRemoveCurse();
+		scrollOfRemoveCurse.identify();
+		scrollOfRemoveCurse.quantity(10);
+		scrollOfRemoveCurse.collect();
+		ScrollOfUpgrade scrollOfUpgrade = new ScrollOfUpgrade();
+		scrollOfUpgrade.identify();
+		scrollOfUpgrade.quantity(10);
+		scrollOfUpgrade.collect();
 
 		new ScrollOfUpgrade().identify();
 		new PotionOfLiquidFlame().identify();
@@ -220,6 +266,11 @@ public enum HeroClass {
 
 	private static void initRogue( Hero hero ) {
 		(hero.belongings.weapon = new Dagger()).identify();
+
+		Dagger dagger = new Dagger();
+		dagger.enchant(new Vampiric());
+		dagger.level(5);
+		dagger.identify().collect();
 
 		CloakOfShadows cloak = new CloakOfShadows();
 		HornOfPlenty horn = new HornOfPlenty();
@@ -240,6 +291,23 @@ public enum HeroClass {
 		ringOfWealth.level(3);
 		ringOfWealth.identify();
 		ringOfWealth.collect();
+
+		PotionOfStrength potionOfStrength = new PotionOfStrength();
+		potionOfStrength.identify();
+		potionOfStrength.quantity(10);
+		potionOfStrength.collect();
+		PotionOfHealing potionOfHealing = new PotionOfHealing();
+		potionOfHealing.identify();
+		potionOfHealing.quantity(10);
+		potionOfHealing.collect();
+		ScrollOfRemoveCurse scrollOfRemoveCurse = new ScrollOfRemoveCurse();
+		scrollOfRemoveCurse.identify();
+		scrollOfRemoveCurse.quantity(10);
+		scrollOfRemoveCurse.collect();
+		ScrollOfUpgrade scrollOfUpgrade = new ScrollOfUpgrade();
+		scrollOfUpgrade.identify();
+		scrollOfUpgrade.quantity(10);
+		scrollOfUpgrade.collect();
 
 		Dungeon.quickslot.setSlot(0, cloak);
 		Dungeon.quickslot.setSlot(1, knives);
@@ -268,6 +336,23 @@ public enum HeroClass {
 		potionBandolier.collect();
 		magicalHolster.collect();
 		Dungeon.quickslot.setSlot(0, bow);
+		PotionOfStrength potionOfStrength = new PotionOfStrength();
+		potionOfStrength.identify();
+		potionOfStrength.quantity(10);
+		potionOfStrength.collect();
+		PotionOfHealing potionOfHealing = new PotionOfHealing();
+		potionOfHealing.identify();
+		potionOfHealing.quantity(10);
+		potionOfHealing.collect();
+
+		ScrollOfRemoveCurse scrollOfRemoveCurse = new ScrollOfRemoveCurse();
+		scrollOfRemoveCurse.identify();
+		scrollOfRemoveCurse.quantity(10);
+		scrollOfRemoveCurse.collect();
+		ScrollOfUpgrade scrollOfUpgrade = new ScrollOfUpgrade();
+		scrollOfUpgrade.identify();
+		scrollOfUpgrade.quantity(10);
+		scrollOfUpgrade.collect();
 
 		new PotionOfMindVision().identify();
 		new ScrollOfLullaby().identify();
@@ -293,14 +378,26 @@ public enum HeroClass {
 		ringOfEvasion.level(3);
 		ringOfEvasion.identify();
 		ringOfEvasion.collect();
+		ScrollOfUpgrade scrollOfUpgrade = new ScrollOfUpgrade();
+		scrollOfUpgrade.identify();
+		scrollOfUpgrade.quantity(10);
+		scrollOfUpgrade.collect();
 
 		Dungeon.quickslot.setSlot(0, hero.belongings.weapon);
 		Dungeon.quickslot.setSlot(1, spikes);
+		ScrollOfRemoveCurse scrollOfRemoveCurse = new ScrollOfRemoveCurse();
+		scrollOfRemoveCurse.identify();
+		scrollOfRemoveCurse.quantity(10);
+		scrollOfRemoveCurse.collect();
 
 		PotionOfStrength potionOfStrength = new PotionOfStrength();
 		potionOfStrength.identify();
 		potionOfStrength.quantity(10);
 		potionOfStrength.collect();
+		PotionOfHealing potionOfHealing = new PotionOfHealing();
+		potionOfHealing.identify();
+		potionOfHealing.quantity(10);
+		potionOfHealing.collect();
 		new ScrollOfMirrorImage().identify();
 	}
 
