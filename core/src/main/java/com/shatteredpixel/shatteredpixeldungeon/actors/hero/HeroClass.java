@@ -54,6 +54,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.bags.PotionBandolier;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.ScrollHolder;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.VelvetPouch;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.Food;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfExperience;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfInvisibility;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfLiquidFlame;
@@ -76,9 +77,20 @@ import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfRemoveCurs
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfMagicMissile;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.SpiritBow;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Blooming;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Corrupting;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Elastic;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Grim;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Kinetic;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Projecting;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Shocking;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Unstable;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Vampiric;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.AssassinsBlade;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Dagger;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Glaive;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Gloves;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Greatsword;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.MagesStaff;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Rapier;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.WornShortsword;
@@ -183,10 +195,12 @@ public enum HeroClass {
 		ThrowingStone stones = new ThrowingStone();
 		stones.quantity(3).collect();
 		Dungeon.quickslot.setSlot(0, stones);
-		Gloves gloves = new Gloves();
+		Glaive gloves = new Glaive();
 		gloves.enchant(new Vampiric());
-		gloves.level(5);
 		gloves.identify().collect();
+
+		PotionOfExperience experience = new PotionOfExperience();
+		experience.identify().quantity(10).collect();
 
 		horn.identify();
 		horn.collect();
@@ -229,6 +243,8 @@ public enum HeroClass {
 		MagicalHolster magicalHolster = new MagicalHolster();
 		MagesStaff staff;
 
+		PotionOfExperience experience = new PotionOfExperience();
+		experience.identify().quantity(10).collect();
 		staff = new MagesStaff(new WandOfMagicMissile());
 
 		(hero.belongings.weapon = staff).identify();
@@ -267,10 +283,11 @@ public enum HeroClass {
 	private static void initRogue( Hero hero ) {
 		(hero.belongings.weapon = new Dagger()).identify();
 
-		Dagger dagger = new Dagger();
+		AssassinsBlade dagger = new AssassinsBlade();
 		dagger.enchant(new Vampiric());
-		dagger.level(5);
 		dagger.identify().collect();
+		PotionOfExperience experience = new PotionOfExperience();
+		experience.identify().quantity(10).collect();
 
 		CloakOfShadows cloak = new CloakOfShadows();
 		HornOfPlenty horn = new HornOfPlenty();
@@ -318,12 +335,15 @@ public enum HeroClass {
 
 	private static void initHuntress( Hero hero ) {
 
+		PotionOfExperience experience = new PotionOfExperience();
+		experience.identify().quantity(10).collect();
 		HornOfPlenty horn = new HornOfPlenty();
 		ScrollHolder scrollHolder = new ScrollHolder();
 		PotionBandolier potionBandolier = new PotionBandolier();
 		MagicalHolster magicalHolster = new MagicalHolster();
 		(hero.belongings.weapon = new Gloves()).identify();
 		SpiritBow bow = new SpiritBow();
+		bow.enchant(new Blooming());
 		bow.identify().collect();
 		RingOfAccuracy ringOfAccuracy = new RingOfAccuracy();
 		ringOfAccuracy.level(3);
@@ -359,6 +379,8 @@ public enum HeroClass {
 	}
 
 	private static void initDuelist( Hero hero ) {
+		PotionOfExperience experience = new PotionOfExperience();
+		experience.identify().quantity(10).collect();
 		HornOfPlenty horn = new HornOfPlenty();
 		ScrollHolder scrollHolder = new ScrollHolder();
 		PotionBandolier potionBandolier = new PotionBandolier();
@@ -382,6 +404,9 @@ public enum HeroClass {
 		scrollOfUpgrade.identify();
 		scrollOfUpgrade.quantity(10);
 		scrollOfUpgrade.collect();
+		Greatsword greatsword = new Greatsword();
+		greatsword.enchant(new Vampiric());
+		greatsword.identify().collect();
 
 		Dungeon.quickslot.setSlot(0, hero.belongings.weapon);
 		Dungeon.quickslot.setSlot(1, spikes);
